@@ -1,5 +1,20 @@
 // Declarations
 
+// Input verification
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (charCode > 31 && (charCode < 46 || charCode > 57)
+        || charCode === 47) { // allow numeral or period
+      return false;
+    }
+    return true;
+}
+
+// Get text from Input
+function getStringValue() {
+  console.log(document.getElementById("amtInput").value);
+}
+
 /************************************
 * function AmountToLongString()
 * Input:  Amount of check in dollars and cents (ex. 120.35)
@@ -11,7 +26,7 @@ function AmountToLongString(amount) {
     return null;
   }
 
-  amtInt = Math.trunc(amount); // reject cents
+  amtInt = Math.trunc(amount); // remove cents
 
   // case < 1.00
   if (amount < 1) {
