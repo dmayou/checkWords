@@ -1,22 +1,31 @@
 // Declarations
 
 // Input verification
-function isNumberKey(evt){
-    var charCode = (evt.which) ? evt.which : event.keyCode;
-    if (charCode > 31 && (charCode < 46 || charCode > 57)
-        || charCode === 47) { // allow numeral or period
-      return false;
-    }
-    return true;
+// var inputField = document.getElementById('amt_input')
+// inputField.onkeydown = function(event) {
+//     const key = event.key;
+//     console.log(key);
+//     if (charCode > 31 && (charCode < 46 || charCode > 57)
+//         || charCode === 47) { // allow numeral or period
+//         return false;
+//     }
+//     // Blank output if input value changes
+//     // if (key === "Backspace" || key === "Delete") {
+//     document.getElementById('amt_output').value = '';
+//     return true;
+// };
+function isNumberKey(key){
+    // blank output to avoid user error
+    document.getElementById('amt_output').value = 'Press Get Words';
+    return (key >= '0' && key <= '9') || key == '.' || key == 'ArrowLeft'
+        || key == 'ArrowRight' || key == 'Delete' || key == 'Backspace';
 }
 
 // Get text from Input
 function getStringValue() {
-  // console.log(document.getElementById("amtInput").value);
 
   let input = document.getElementById("amt_input").value
               .replace(/\.\./g,'\.'); // correct double radix entry
-  // let inputAmt = Math.trunc(((Number(input) + 0.005 + Number.MIN_VALUE) * 100));
   let inputAmt = Math.trunc(Number(input) * 100) / 100;
   // console.log(inputAmt);
   // console.log(Number.isNaN(input), input);
