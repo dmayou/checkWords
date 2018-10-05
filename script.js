@@ -12,7 +12,15 @@ function isNumberKey(evt){
 
 // Get text from Input
 function getStringValue() {
-  console.log(document.getElementById("amtInput").value);
+  // console.log(document.getElementById("amtInput").value);
+
+  let input = document.getElementById("amt_input").value
+              .replace(/\.\./g,'\.'); // correct double radix entry
+  // let inputAmt = Math.trunc(((Number(input) + 0.005 + Number.MIN_VALUE) * 100));
+  let inputAmt = Math.trunc(Number(input) * 100) / 100;
+  // console.log(inputAmt);
+  // console.log(Number.isNaN(input), input);
+  document.getElementById("amt_output").value = AmountToLongString(inputAmt);
 }
 
 /************************************
