@@ -1,19 +1,6 @@
 // Declarations
 
 // Input verification
-// var inputField = document.getElementById('amt_input')
-// inputField.onkeydown = function(event) {
-//     const key = event.key;
-//     console.log(key);
-//     if (charCode > 31 && (charCode < 46 || charCode > 57)
-//         || charCode === 47) { // allow numeral or period
-//         return false;
-//     }
-//     // Blank output if input value changes
-//     // if (key === "Backspace" || key === "Delete") {
-//     document.getElementById('amt_output').value = '';
-//     return true;
-// };
 function isNumberKey(key){
     // blank output to avoid user error
     document.getElementById('amt_output').value = 'Press Get Words';
@@ -24,12 +11,22 @@ function isNumberKey(key){
 // Get text from Input
 function getStringValue() {
 
-  let input = document.getElementById("amt_input").value
+  let input = document.getElementById('amt_input').value
               .replace(/\.\./g,'\.'); // correct double radix entry
   let inputAmt = Math.trunc(Number(input) * 100) / 100;
-  // console.log(inputAmt);
-  // console.log(Number.isNaN(input), input);
-  document.getElementById("amt_output").value = AmountToLongString(inputAmt);
+  displayOutput(inputAmt);
+}
+
+function displayOutput(amount) {
+  if (Number.isNaN(amount)) {
+    document.getElementById('amt_output').value = 'What you entered isn\'t a number';
+  } else if (amount == 0) {
+    document.getElementById('amt_output').value = 'Can\'t write a check for zero dollars';
+  } else if (amount > 1e6 - 0.01) {
+    document.getElementById('amt_output').value = 'That number\'s too big';
+  } else {
+    document.getElementById('amt_output').value = AmountToLongString(amount);
+  }
 }
 
 /************************************
