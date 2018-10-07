@@ -51,27 +51,27 @@ function AmountToLongString(amount) {
 
   // case 1 - 999.99
   if (amount < 1000) {
-    return (HundredsToLongString(amtInt)
+    return (HundredsToLongString(amtInt, false)
             + (amtInt % 100 === 0 ? '' : ' ') // only add space if needed
             + 'and ' + FractionalPart(amount));
   }
 
   // case 1000 - 999,999.99
     // conditional at top of function ensures amount < 1e6
-  return (HundredsToLongString(Math.trunc(amtInt/1000)) + ' Thousand '
-          + HundredsToLongString(amtInt % 1000)
+  return (HundredsToLongString(Math.trunc(amtInt/1000), true) + ' Thousand '
+          + HundredsToLongString(amtInt % 1000, false)
           + (amtInt % 1000 === 0 ? '' : ' ') // only add space if needed
           + 'and '
           + FractionalPart(amount));
 
 }
 
-function HundredsToLongString(num) {
+function HundredsToLongString(num, dashes) {
   // returns words for integer 0 < num < 1000
   if (num < 10) {
     return (NumberToUnitsWord(num));
   } else if (num < 100) {
-    return (NumberToTensWord(num));
+    return (NumberToTensWord(num, dashes));
   } else {
     if (num % 100 === 0) {
       return (NumberToUnitsWord(Math.trunc(num / 100)) + ' Hundred ');
@@ -80,7 +80,7 @@ function HundredsToLongString(num) {
               + NumberToUnitsWord(num % 100));
     } else {
       return (NumberToUnitsWord(Math.trunc(num / 100)) + ' Hundred '
-              + NumberToTensWord(num % 100));
+              + NumberToTensWord(num % 100, dashes));
     }
   }
 }
@@ -115,7 +115,7 @@ function NumberToUnitsWord(num) {
 
 }
 
-function NumberToTensWord(num) {
+function NumberToTensWord(num, dashes) {
   if (typeof num != 'number' || (num > 99 || num < 10)) {
     return null;
   }
@@ -145,21 +145,21 @@ function NumberToTensWord(num) {
   }
   switch (Math.trunc(num / 10)) {
     case 2:
-      return('Twenty ' + NumberToUnitsWord(num % 10));
+      return('Twenty' + (dashes ? '-' : ' ') + NumberToUnitsWord(num % 10));
     case 3:
-      return('Thirty '+ NumberToUnitsWord(num % 10));
+      return('Thirty' + (dashes ? '-' : ' ') + NumberToUnitsWord(num % 10));
     case 4:
-      return('Forty ' + NumberToUnitsWord(num % 10));
+      return('Forty' + (dashes ? '-' : ' ') + NumberToUnitsWord(num % 10));
     case 5:
-      return('Fifty ' + NumberToUnitsWord(num % 10));
+      return('Fifty' + (dashes ? '-' : ' ') + NumberToUnitsWord(num % 10));
     case 6:
-      return('Sixty ' + NumberToUnitsWord(num % 10));
+      return('Sixty' + (dashes ? '-' : ' ') + NumberToUnitsWord(num % 10));
     case 7:
-      return('Seventy ' + NumberToUnitsWord(num % 10));
+      return('Seventy' + (dashes ? '-' : ' ') + NumberToUnitsWord(num % 10));
     case 8:
-      return('Eighty ' + NumberToUnitsWord(num % 10));
+      return('Eighty' + (dashes ? '-' : ' ') + NumberToUnitsWord(num % 10));
     case 9:
-      return('Ninety ' + NumberToUnitsWord(num % 10));
+      return('Ninety' + (dashes ? '-' : ' ') + NumberToUnitsWord(num % 10));
   }
 }
 
