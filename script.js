@@ -1,4 +1,6 @@
-// Declarations
+function setFocus() {
+  document.getElementById('amt_input').focus();
+}
 
 // Input verification
 function isNumberKey(key){
@@ -10,10 +12,10 @@ function isNumberKey(key){
 
 // Get text from Input
 function getStringValue() {
-
   let input = document.getElementById('amt_input').value
               .replace(/\.\./g,'\.'); // correct double radix entry
   let inputAmt = Math.trunc(Number(input) * 100) / 100;
+  setFocus();  // back to amt_input
   displayOutput(inputAmt);
 }
 
