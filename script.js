@@ -14,7 +14,7 @@ function isNumberKey(key){
 function getStringValue() {
   let input = document.getElementById('amt_input').value
               .replace(/\.\./g,'\.'); // correct double radix entry
-  let inputAmt = Math.trunc(Number(input) * 100) / 100;
+  let inputAmt = (input === '' ? NaN : (Math.trunc(Number(input) * 100) / 100));
   setFocus();  // back to amt_input
   displayOutput(inputAmt);
 }
@@ -22,7 +22,7 @@ function getStringValue() {
 function displayOutput(amount) {
   if (Number.isNaN(amount)) {
     document.getElementById('amt_output').value = 'What you entered isn\'t a number';
-  } else if (amount == 0) {
+  } else if (amount === 0) {
     document.getElementById('amt_output').value = 'Can\'t write a check for zero dollars';
   } else if (amount > 1e6 - 0.01) {
     document.getElementById('amt_output').value = 'That number\'s too big';
@@ -46,7 +46,7 @@ function AmountToLongString(amount) {
 
   // case < 1.00
   if (amount < 1) {
-    return ('No and ' + FractionalPart(amount));
+    return ('Zero and ' + FractionalPart(amount));
   }
 
   // case 1 - 999.99
