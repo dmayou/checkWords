@@ -1,3 +1,5 @@
+'use strict';
+
 function setFocus() {
   document.getElementById('amt_input').focus();
 }
@@ -42,7 +44,7 @@ function AmountToLongString(amount) {
     return null;
   }
 
-  amtInt = Math.trunc(amount); // remove cents
+  let amtInt = Math.trunc(amount); // remove cents
 
   // case < 1.00
   if (amount < 1) {
@@ -164,7 +166,7 @@ function NumberToTensWord(num, dashes) {
 }
 
 function FractionalPart(amount) {
-    return (Math.round((amount - amtInt) * 100) + '/100 Dollars');
+    return (Math.round((amount - Math.trunc(amount)) * 100) + '/100 Dollars');
 }
 
 // Test Cases
