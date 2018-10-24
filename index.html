@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Write My Check</title>
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" charset="utf-8"></script>
   </head>
   <body>
-    <input type="text" id = "amt_input" name="amt_input" autofocus 
-           onkeydown="return isNumberKey(event.key)"
+    <input type="txt" id = "amt_input" name="amt_input" autofocus
+           class="txt" onkeydown="return isNumberKey(event.key)"
            placeholder="Check Amount" name="Amount" min="0.01" max="999999.99"/>
-    <button onclick="getStringValue()" >Get Words</button>
-    <textarea id = "amt_output" readonly rows="3" cols="30"></textarea>
+    <button class="btn" onclick="getStringValue()" >Get Words</button>
+    <output id="amt_output" class="txt" align="left"/>
   </body>
 </html>
