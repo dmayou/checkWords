@@ -62,7 +62,7 @@ function AmountToLongString(amount) {
     // conditional at top of function ensures amount < 1e6
   return (HundredsToLongString(Math.trunc(amtInt/1000), true) + ' Thousand '
           + HundredsToLongString(amtInt % 1000, false)
-          + (amtInt % 1000 === 0 ? '' : ' ') // only add space if needed
+          + (amtInt % 100 === 0 ? '' : ' ') // only add space if needed
           + 'and '
           + FractionalPart(amount));
 
