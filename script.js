@@ -169,40 +169,6 @@ function FractionalPart(amount) {
     return (Math.round((amount - Math.trunc(amount)) * 100) + '/100 Dollars');
 }
 
-// Test Cases
-function TestAmt(value) {
-  console.log('Value is ', value, 'and string is', AmountToLongString(value));
-}
-
-TestAmt(0);
-TestAmt(0.99);
-TestAmt(1);
-TestAmt(4.57);
-TestAmt(9.99);
-TestAmt(10);
-TestAmt(16.42);
-TestAmt(76.54);
-TestAmt(99.99);
-TestAmt(100);
-TestAmt(105);
-TestAmt(110);
-TestAmt(123.45);
-TestAmt(456.23);
-TestAmt(999.99);
-TestAmt(1000);
-TestAmt(1235.45);
-TestAmt(1400.16);
-TestAmt(6000);
-TestAmt(10000);
-TestAmt(12345.67);
-TestAmt(16000);
-TestAmt(16543.21);
-TestAmt(423000);
-TestAmt(367159.24);
-TestAmt(999000);
-TestAmt(999999.99);
-TestAmt(1000000.);
-
 // function AmountToWordsRecurs(amount) {
 //   // check for in range
 //   if (typeof amount != 'number' || amount > 1e6 - 0.01 || amount < 0.01) {
