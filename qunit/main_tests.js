@@ -1,3 +1,4 @@
+// AmountToLongString() test cases
 let testCases = [
   {amt:      0, words: null},
   {amt:   0.99, words: 'Zero and 99/100 Dollars'},
@@ -22,8 +23,9 @@ let testCases = [
   {amt: 12345.67, words: 'Twelve Thousand Three Hundred Forty Five and 67/100 Dollars'},
   {amt:    16000, words: 'Sixteen Thousand and 0/100 Dollars'},
   {amt: 16543.21, words: 'Sixteen Thousand Five Hundred Forty Three and 21/100 Dollars'},
-  {amt:   423000, words: 'Four Hundred Twenty-Three Thousand and 0/100 Dollars'},
+  {amt: 185000.12, words: 'One Hundred Eighty-Five Thousand and 12/100 Dollars'},
   {amt: 367159.24, words: 'Three Hundred Sixty-Seven Thousand One Hundred Fifty Nine and 24/100 Dollars'},
+  {amt: 877877.88, words: 'Eight Hundred Seventy-Seven Thousand Eight Hundred Seventy Seven and 88/100 Dollars'},
   {amt:    999000, words: 'Nine Hundred Ninety-Nine Thousand and 0/100 Dollars'},
   {amt: 999999.99, words: 'Nine Hundred Ninety-Nine Thousand Nine Hundred Ninety Nine and 99/100 Dollars'},
   {amt:   1000000, words: null}
@@ -38,3 +40,12 @@ for (let i=0; i<testCases.length; i++) {
     )
   });
 }
+
+// test test cases
+displayOutput
+QUnit.test('zero dollar amount', function(assert){
+  assert.equal(
+    // AmountToLongString(amt), words, `Argument of ${amt} returns ${words}`
+    displayOutput(0), 'Can\'t write check for zero dollars', 'text'   
+  )
+});

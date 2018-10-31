@@ -1,35 +1,46 @@
 'use strict';
 
-function setFocus() {
-  document.getElementById('amt_input').focus();
+// Global variables
+let inText;
+let outText;
+
+// On document ready
+document.addEventListener('DOMContentLoaded', function(){
+  inText = document.getElementById('amt_input');
+  outText = document.getElementById('amt_output');
+  setFocus(inText);
+});
+
+function setFocus(target) {
+  target.focus();
 }
 
 // Input verification
-function isNumberKey(key){
+function isNumberKey(key, src){
     // blank output to avoid user error
-    document.getElementById('amt_output').value = 'Press Get Words';
+    outText.value = 'Press Get Words';
     return (key >= '0' && key <= '9') || key == '.' || key == 'ArrowLeft'
         || key == 'ArrowRight' || key == 'Delete' || key == 'Backspace';
 }
 
 // Get text from Input
 function getStringValue() {
-  let input = document.getElementById('amt_input').value
+  let input = inText.value
               .replace(/\.\./g,'\.'); // correct double radix entry
   let inputAmt = (input === '' ? NaN : (Math.trunc(Number(input) * 100) / 100));
-  setFocus();  // back to amt_input
-  displayOutput(inputAmt);
+  setFocus(inText);
+  displayOutput(inputAmt, outText);
 }
 
-function displayOutput(amount) {
+function displayOutput(amount, target) {
   if (Number.isNaN(amount)) {
-    document.getElementById('amt_output').value = 'What you entered isn\'t a number';
+    target.value = 'What you entered isn\'t a number';
   } else if (amount === 0) {
-    document.getElementById('amt_output').value = 'Can\'t write a check for zero dollars';
+    target.value = 'Can\'t write a check for zero dollars';
   } else if (amount > 1e6 - 0.01) {
-    document.getElementById('amt_output').value = 'That number\'s too big';
+    target.value = 'That number\'s too big';
   } else {
-    document.getElementById('amt_output').value = AmountToLongString(amount);
+    target.value = AmountToLongString(amount);
   }
 }
 
@@ -65,7 +76,6 @@ function AmountToLongString(amount) {
           + (amtInt % 100 === 0 ? '' : ' ') // only add space if needed
           + 'and '
           + FractionalPart(amount));
-
 }
 
 function HundredsToLongString(num, dashes) {
@@ -114,7 +124,6 @@ function NumberToUnitsWord(num) {
       return('Nine');
     default:
   }
-
 }
 
 function NumberToTensWord(num, dashes) {
