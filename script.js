@@ -12,7 +12,11 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 function setFocus(target) {
-  target.focus();
+  if (target != null) {
+    target.focus();
+  } else { // may be true while testing
+    console.log('setFocus(): target is null');
+  }
 }
 
 // Input verification

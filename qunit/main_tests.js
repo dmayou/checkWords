@@ -41,11 +41,25 @@ for (let i=0; i<testCases.length; i++) {
   });
 }
 
-// test test cases
-displayOutput
-QUnit.test('zero dollar amount', function(assert){
-  assert.equal(
-    // AmountToLongString(amt), words, `Argument of ${amt} returns ${words}`
-    displayOutput(0), 'Can\'t write check for zero dollars', 'text'   
-  )
-});
+// displayOutput test cases
+let testAmounts = [
+  {amt:       0, words: 'Can\'t write a check for zero dollars'},
+  {amt:   0.005, words: 'Can\'t write a check for zero dollars'},
+  {amt:     NaN, words: 'What you entered isn\'t a number'},
+  {amt:      '', words: 'What you entered isn\'t a number'},
+  {amt:    null, words: 'What you entered isn\'t a number'},
+  {amt: 'hello', words: 'What you entered isn\'t a number'},
+  {amt: 999999.999, words: 'That number\'s too big'},
+  {amt: 2000000, words: 'That number\'s too big'},
+  {amt: 1000000, words: 'That number\'s too big'}
+];
+
+for (let i=0; i<testAmounts.length; i++) {
+  QUnit.test('amount= ' + testAmounts[i].amt, function(assert){
+    let target = document.getElementById('qunit-fixture');
+    displayOutput(testAmounts[i].amt, target);
+    assert.equal(
+      target.value, testAmounts[i].words, ''
+    )
+  });
+}
