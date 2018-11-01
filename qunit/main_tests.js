@@ -49,7 +49,6 @@ let testAmounts = [
   {amt:      '', words: 'What you entered isn\'t a number'},
   {amt:    null, words: 'What you entered isn\'t a number'},
   {amt: 'hello', words: 'What you entered isn\'t a number'},
-  {amt: 999999.999, words: 'That number\'s too big'},
   {amt: 2000000, words: 'That number\'s too big'},
   {amt: 1000000, words: 'That number\'s too big'}
 ];

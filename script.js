@@ -31,15 +31,19 @@ function isNumberKey(key, src){
 function getStringValue() {
   let input = inText.value
               .replace(/\.\./g,'\.'); // correct double radix entry
-  let inputAmt = (input === '' ? NaN : (Math.trunc(Number(input) * 100) / 100));
+  // let inputAmt = (input === '' ? NaN : (Math.trunc(Number(input) * 100) / 100));
   setFocus(inText);
-  displayOutput(inputAmt, outText);
+  displayOutput(input, outText);
 }
 
-function displayOutput(amount, target) {
-  if (Number.isNaN(amount)) {
+function displayOutput(input, target) {
+  if (input === '' || input == null || (String(input).match(/^[0-9.]+$/) == null)) {
     target.value = 'What you entered isn\'t a number';
-  } else if (amount === 0) {
+    return;
+  }
+
+  let amount = Math.trunc(Number(input) * 100) / 100;
+  if (amount === 0) {
     target.value = 'Can\'t write a check for zero dollars';
   } else if (amount > 1e6 - 0.01) {
     target.value = 'That number\'s too big';
