@@ -20,11 +20,18 @@ function setFocus(target) {
 }
 
 // Input verification
-function isNumberKey(key, src){
+function checkInput(key, src){
     // blank output to avoid user error
     outText.value = 'Press Get Words';
-    return (key >= '0' && key <= '9') || key == '.' || key == 'ArrowLeft'
-        || key == 'ArrowRight' || key == 'Delete' || key == 'Backspace';
+
+    let input = inText.value;
+    // only let user enter a decimal point (period) if one hasn't been entered
+    if (key === '.') {
+      return !input.includes('.');
+    }
+    // let user enter any number key
+    return (key >= '0' && key <= '9') || key === 'ArrowLeft'
+        || key === 'ArrowRight' || key === 'Delete' || key === 'Backspace';
 }
 
 // Get text from Input

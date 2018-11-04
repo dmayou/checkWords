@@ -7,10 +7,10 @@
     <script src="script.js" charset="utf-8"></script>
   </head>
   <body>
-    <input type="txt" id = "amt_input" name="amt_input" autofocus
-           class="txt" onkeydown="return isNumberKey(event.key,this)"
-           placeholder="Check Amount" name="Amount" min="0.01" max="999999.99"/>
-    <button id="get_words" class="btn" onclick="getStringValue()" >Get Words</button>
+    <input type="txt" id="amt_input" name="amt_input" autofocus
+           class="txt" onkeydown="return checkInput(event.key,this)"
+           placeholder="Check Amount" name="Amount"/>
+    <button id="get_words" class="btn" onclick="getStringValue()">Get Words</button>
     <output id="amt_output" class="txt" align="left"/>
   </body>
 </html>
